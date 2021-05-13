@@ -31,7 +31,50 @@ public class Group {
 
     }
 
+    public int getGroupId() {
+        return groupId;
+    }
 
+    public String getGroupName() {
+        return groupName;
+    }
 
+    public void setGroupName(String groupName) {
+        this.groupName = groupName;
+    }
 
+    public String getGroupDescription() {
+        return groupDescription;
+    }
+
+    public void setGroupDescription(String groupDescription) {
+        this.groupDescription = groupDescription;
+    }
+
+    public Set<User> getGroupUsers() {
+        return groupUsers;
+    }
+
+    public void setGroupUsers(Set<User> groupUsers) {
+        this.groupUsers = groupUsers;
+    }
+
+    public Reimbursement getReimbHolder() {
+        return reimbHolder;
+    }
+
+    public void setReimbHolder(Reimbursement reimbHolder) {
+        this.reimbHolder = reimbHolder;
+    }
+
+    @Override
+    public String toString() {
+        return "Group{" +
+                "groupId=" + groupId +
+                ", groupName='" + groupName + '\'' +
+                ", groupDescription='" + groupDescription + '\'' +
+                ", groupUsers=" + groupUsers +
+                ", reimbHolder=" + reimbHolder +
+                '}';
+    }
 }
