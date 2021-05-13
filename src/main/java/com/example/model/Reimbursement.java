@@ -30,11 +30,11 @@ public class Reimbursement {
     @Column(name = "reimb_fully_paid")
     private boolean reimbFullyPaid;
 
-    @ManyToMany(fetch= FetchType.LAZY,cascade = CascadeType.ALL)
-    @JoinTable(name= "mr_group",
-            joinColumns = {@JoinColumn(name = "reimb_id")},
-            inverseJoinColumns = {@JoinColumn (name="tag_id")})
-    private List<Group> groups = new ArrayList<>();
+    @OneToMany(mappedBy = "reimbHolder", fetch = FetchType.LAZY)
+    private List<Group> groupList = new ArrayList<>();
+
+
+
 
 
     public Reimbursement() {
