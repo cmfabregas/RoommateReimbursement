@@ -5,7 +5,7 @@ import java.util.*;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "reimbursement")
+@Table(name = "rmr_reimbursement")
 public class Reimbursement {
 
     @Id
@@ -30,8 +30,9 @@ public class Reimbursement {
     @Column(name = "reimb_fully_paid")
     private boolean reimbFullyPaid;
 
-    @OneToMany(mappedBy = "reimbHolder", fetch = FetchType.LAZY)
-    private List<Group> groupList = new ArrayList<>();
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "Group_FK")
+    private Group group;
 
     @Column(name = "user_id")
     private int user_id;
@@ -48,7 +49,6 @@ public class Reimbursement {
         this.reimbDescription = reimbDescription;
         this.reimbReceipt = reimbReceipt;
         this.reimbFullyPaid = reimbFullyPaid;
-        this.groupList = groupList;
         this.user_id = user_id;
     }
 
@@ -100,13 +100,6 @@ public class Reimbursement {
         this.reimbFullyPaid = reimbFullyPaid;
     }
 
-    public List<Group> getGroupList() {
-        return groupList;
-    }
-
-    public void setGroupList(List<Group> groupList) {
-        this.groupList = groupList;
-    }
 
     public int getUser_id() {
         return user_id;
@@ -130,7 +123,6 @@ public class Reimbursement {
                 ", reimbDescription='" + reimbDescription + '\'' +
                 ", reimbReceipt='" + reimbReceipt + '\'' +
                 ", reimbFullyPaid=" + reimbFullyPaid +
-                ", groupList=" + groupList +
                 ", user_id=" + user_id +
                 '}';
     }

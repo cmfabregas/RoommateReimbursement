@@ -23,7 +23,7 @@ public class GroupService {
     }
 
     public Group getGroupByName(String groupName){
-        return groupRepo.findGroupByName(groupName);
+        return groupRepo.findByGroupName(groupName);
     }
 
     public void insertGroup(Group group){
