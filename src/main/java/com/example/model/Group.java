@@ -9,7 +9,7 @@ import java.util.Set;
 public class Group {
 
     @Id
-    @Column(name="id")
+    @Column(name="group_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int groupId;
 

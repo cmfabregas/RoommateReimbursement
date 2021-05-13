@@ -1,8 +1,16 @@
 package com.example.repository;
 
-public interface GroupRepository JpaRepository<Group, Integer> {
+import com.example.model.Group;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-//    public List<Group> findAll();
-//    public
+import java.util.List;
+
+public interface GroupRepository extends JpaRepository<Group, Integer> {
+
+    public List<Group> findAll();
+    public Group findGroupByName(String groupName);
+    public Group findByGroupId(int groupId);
+
+
 
 }
