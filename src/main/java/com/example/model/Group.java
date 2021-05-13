@@ -2,10 +2,12 @@ package com.example.model;
 
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 @Entity
-@Table(name="group")
+@Table(name="rmr_group")
 public class Group {
 
     @Id
@@ -19,12 +21,14 @@ public class Group {
     @Column(name="group_description")
     private String groupDescription;
 
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "groups")
-    private Set<User> groupUsers;
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "JOIN_USER_GROUP",
+            joinColumns = {@JoinColumn(name = "groupId")},
+            inverseJoinColumns = {@JoinColumn(name = "userId")})
+    private List<User> groupUsers;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "Reimb_FK", referencedColumnName = "group_id")
-    private Reimbursement reimbHolder;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "group")
+    private List<Reimbursement> reimbursements = new ArrayList<>();
 
     public Group()
     {
@@ -51,20 +55,20 @@ public class Group {
         this.groupDescription = groupDescription;
     }
 
-    public Set<User> getGroupUsers() {
+    public List<User> getGroupUsers() {
         return groupUsers;
     }
 
-    public void setGroupUsers(Set<User> groupUsers) {
+    public void setGroupUsers(List<User> groupUsers) {
         this.groupUsers = groupUsers;
     }
 
-    public Reimbursement getReimbHolder() {
-        return reimbHolder;
+    public List<Reimbursement> getReimbursements() {
+        return reimbursements;
     }
 
-    public void setReimbHolder(Reimbursement reimbHolder) {
-        this.reimbHolder = reimbHolder;
+    public void setReimbursements(List<Reimbursement> reimbursements) {
+        this.reimbursements = reimbursements;
     }
 
     @Override
@@ -74,7 +78,6 @@ public class Group {
                 ", groupName='" + groupName + '\'' +
                 ", groupDescription='" + groupDescription + '\'' +
                 ", groupUsers=" + groupUsers +
-                ", reimbHolder=" + reimbHolder +
                 '}';
     }
 }

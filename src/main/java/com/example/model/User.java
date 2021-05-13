@@ -7,7 +7,7 @@ import java.util.List;
 
 
 @Entity
-@Table(name="user")
+@Table(name="rmr_user")
 public class User {
 
     @Id
@@ -21,7 +21,7 @@ public class User {
     @Column(name = "useremail")
     private String email;
 
-    @Column(name = "password")
+    @Column(name = "u_password")
     private String password;
 
     @Column(name="first_name")
@@ -31,9 +31,9 @@ public class User {
     private String lastName;
 
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "user_group",
-        joinColumns = {@JoinColumn(name = "user_id")},
-        inverseJoinColumns = {@JoinColumn(name = "group_id")})
+    @JoinTable(name = "JOIN_USER_GROUP",
+        joinColumns = {@JoinColumn(name = "userId")},
+        inverseJoinColumns = {@JoinColumn(name = "groupId")})
     private List<Group> groups = new ArrayList<>();
 
 
@@ -106,15 +106,11 @@ public class User {
         this.lastName = lastName;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "userId=" + userId +
-                ", username='" + username + '\'' +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                '}';
+    public List<Group> getGroups() {
+        return groups;
+    }
+
+    public void setGroups(List<Group> groups) {
+        this.groups = groups;
     }
 }
