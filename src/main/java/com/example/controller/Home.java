@@ -33,7 +33,7 @@ public class Home {
 	}
 	
 	@PostMapping("/rem")
-	public ResponseEntity<Object> insertFood(@RequestBody LinkedHashMap<String,String> user){
+	public ResponseEntity<Object> insert(@RequestBody LinkedHashMap<String,String> user){
 		System.out.println("rem");
 	//	User user1 = new User(user.get("GroupName"), user.get("ReimbursementName"), Integer.parseInt(user.get("ReimbursementAmount")));
 		//System.out.println(user1);

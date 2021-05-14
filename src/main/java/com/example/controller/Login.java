@@ -79,10 +79,10 @@ public class Login {
 	}
 	
 	@PostMapping("/register")
-	public ResponseEntity<Object> insertFood(@RequestBody User food,BindingResult result){
-		System.out.println(food);
+	public ResponseEntity<Object> insert(@RequestBody User user,BindingResult result){
+		System.out.println(user);
 		
-		fserv.insert(food);
+		fserv.insert(user);
 		//return new ResponseEntity<Object>(fserv.getFoodByName(food.getFirstname()), HttpStatus.CREATED);
 		
 		return null;
