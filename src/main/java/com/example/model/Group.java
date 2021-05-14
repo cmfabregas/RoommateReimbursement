@@ -2,12 +2,23 @@ package com.example.model;
 
 
 import javax.persistence.*;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
 @Entity
 @Table(name="rmr_group")
+@ToString
+@Getter @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Group {
 
     @Id
@@ -30,10 +41,7 @@ public class Group {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "group")
     private List<Reimbursement> reimbursements = new ArrayList<>();
 
-    public Group()
-    {
 
-    }
 
     public int getGroupId() {
         return groupId;
