@@ -40,6 +40,31 @@ public class GroupController {
         return new ResponseEntity<String>("Group created", HttpStatus.CREATED);
     }
 
+    @GetMapping("/{groupname}")
+    public ResponseEntity<Group> getGroupName(@PathVariable("groupname") String name){
+        Group group = groupService.getGroupByName(name);
+
+        if(group == null){
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<Group>(group, HttpStatus.OK);
+    }
+
+    @DeleteMapping("{groupId}")
+    public ResponseEntity<String> deleteGroupById(@PathVariable("groupId") int groupId){
+        Group group = groupService.getGroupById(groupId);
+        groupService.deleteGroup(group);
+        return new ResponseEntity<>("Group successfully deleted", HttpStatus.GONE);
+    }
+
+//    @GetMapping("/{userId}")
+//    public ResponseEntity<List<Group>> getGroupsByUserId(@PathVariable("userId") int id){
+//          return new ResponseEntity<List<Group>>()
+//    }
+
+
+
+
 
 
 
