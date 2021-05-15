@@ -29,5 +29,14 @@ public User getuserlogin(String username,String password) {
 	return urepo.findByUsernameAndPassword(username, password);
 }
 
+
+public User getuserByUserName(String name) {
+	
+	return urepo.findByUsername(name);
+	
+}
+
+
+
 	
 }

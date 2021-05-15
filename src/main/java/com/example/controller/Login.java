@@ -2,6 +2,7 @@ package com.example.controller;
 
 import java.io.IOException;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -29,7 +30,7 @@ public class Login {
 	
 	private UserService fserv;
 	//private UserService Userv;
-
+	public HttpSession session;
 	
 	@Autowired
 	public Login(UserService fserv) {
@@ -39,11 +40,11 @@ public class Login {
 	}
 	
 	@PostMapping("/login")
-	public ResponseEntity<Object> login(@RequestBody User user,HttpSession session){
+	public ResponseEntity<Object> login(@RequestBody User user,HttpServletRequest request){
 		//System.out.println(fserv.getuserlogin(food.getFirstname(), food.getPassword()));
 		System.out.println(user);
-
 		System.out.println("register");
+		HttpSession session=request.getSession();
 
 		//fserv.insertFood(food);
 		
@@ -64,11 +65,14 @@ public class Login {
 
 		}
 		
+		//((Object) session).getSession(true);
 		//session.invalidate();
         session.setAttribute("uname",user.getUsername());  
         session.setAttribute("uid",user.getUserId());  
+		this.session=session;
+
         System.out.println(session.getAttribute("uname"));
-       // System.out.println(session.getAttribute("uname"));  
+        System.out.println(this.session);  
 		return new ResponseEntity<Object>(fserv.getuserlogin(user.getUsername(), user.getPassword()), HttpStatus.CREATED);
 		//return null;
 
