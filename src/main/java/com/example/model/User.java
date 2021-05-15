@@ -22,7 +22,7 @@ import java.util.List;
 public class User {
 
     @Id
-    @Column(name="uid")
+    @Column(name="user_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int userId;
 
