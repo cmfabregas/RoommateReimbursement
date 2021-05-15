@@ -19,7 +19,7 @@ import lombok.ToString;
 public class Reimbursement {
 
     @Id
-    @Column(name = "rid")
+    @Column(name = "reimb_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int reimbId;
     @Column(name = "reimb_amount")
