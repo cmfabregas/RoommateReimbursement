@@ -33,7 +33,12 @@ public class GroupController {
         this.groupService = groupService;
     }
 
-    @GetMapping("/initial")
+    @GetMapping()
+    public ResponseEntity<List<Group>> getAllGroups(){
+        return new ResponseEntity<List<Group>>(groupService.getAllGroups(),HttpStatus.OK);
+    }
+
+    @GetMapping("/init")
     public ResponseEntity<String> insertGroup(@RequestBody Group group){
         System.out.println(group);
         groupService.insertGroup(group);
@@ -50,7 +55,7 @@ public class GroupController {
         return new ResponseEntity<Group>(group, HttpStatus.OK);
     }
 
-    @DeleteMapping("{groupId}")
+    @DeleteMapping("/{groupId}")
     public ResponseEntity<String> deleteGroupById(@PathVariable("groupId") int groupId){
         Group group = groupService.getGroupById(groupId);
         groupService.deleteGroup(group);
