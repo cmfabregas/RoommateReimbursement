@@ -58,6 +58,7 @@ public class Home {
 		
 	}
 	
+	//Table data is need to complete the get request otherwise it will return error (null)
 	
 	@PostMapping("/dash")
 	public ResponseEntity<Object> get(@RequestBody LinkedHashMap<String,String> user){
@@ -72,11 +73,11 @@ public class Home {
         
          Gserv.getGroupById(1);
         
-         return new ResponseEntity<Object>(Gserv.getGroupById(1),HttpStatus.OK);
+         //return new ResponseEntity<Object>(Gserv.getGroupById(1),HttpStatus.OK);
 		//Userv.insertFood(user1);
 	//	return new ResponseEntity<Object>(Userv.getFoodByName(user.getGroupName()), HttpStatus.CREATED);
 
-		//return null;
+		return null;
 		//return new ResponseEntity<String> ("Food Created",HttpStatus.CREATED);
 		
 		
