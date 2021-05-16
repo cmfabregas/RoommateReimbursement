@@ -43,6 +43,13 @@ public class Group {
         this.reimbursements = reimbursements;
     }
 
+    public Group(String groupName, String groupDescription, List<User> groupUsers, List<Reimbursement> reimbursements) {
+        this.groupName = groupName;
+        this.groupDescription = groupDescription;
+        this.groupUsers = groupUsers;
+        this.reimbursements = reimbursements;
+    }
+
     public int getGroupId() {
         return groupId;
     }
