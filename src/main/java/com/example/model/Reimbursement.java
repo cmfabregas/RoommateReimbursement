@@ -15,12 +15,6 @@ public class Reimbursement {
     @Column(name = "reimb_amount")
     private double reimbAmount;
 
-    @Column(name = "reimb_submitted")
-    private Date reimbSubmitted;
-
-    @Column(name="reimb_resolved")
-    private Date reimbResolved;
-
     @Column(name="reimb_description")
     private String reimbDescription;
 
@@ -36,20 +30,21 @@ public class Reimbursement {
 
     @Column(name = "user_id")
     private int user_id;
+    
+    @Column(name = "username")
+    private String username;
 
 
     public Reimbursement() {
     }
 
 
-    public Reimbursement(double reimbAmount, Date reimbSubmitted, Date reimbResolved, String reimbDescription, String reimbReceipt, boolean reimbFullyPaid, List<Group> groupList, int user_id) {
+    public Reimbursement(double reimbAmount, Date reimbSubmitted, Date reimbResolved, String reimbDescription, String reimbReceipt, boolean reimbFullyPaid, List<Group> groupList, String username) {
         this.reimbAmount = reimbAmount;
-        this.reimbSubmitted = reimbSubmitted;
-        this.reimbResolved = reimbResolved;
         this.reimbDescription = reimbDescription;
         this.reimbReceipt = reimbReceipt;
         this.reimbFullyPaid = reimbFullyPaid;
-        this.user_id = user_id;
+        this.username = username;
     }
 
     public double getReimbAmount() {
@@ -59,23 +54,6 @@ public class Reimbursement {
     public void setReimbAmount(double reimbAmount) {
         this.reimbAmount = reimbAmount;
     }
-
-    public Date getReimbSubmitted() {
-        return reimbSubmitted;
-    }
-
-    public void setReimbSubmitted(Date reimbSubmitted) {
-        this.reimbSubmitted = reimbSubmitted;
-    }
-
-    public Date getReimbResolved() {
-        return reimbResolved;
-    }
-
-    public void setReimbResolved(Date reimbResolved) {
-        this.reimbResolved = reimbResolved;
-    }
-
     public String getReimbDescription() {
         return reimbDescription;
     }
@@ -118,8 +96,6 @@ public class Reimbursement {
         return "Reimbursement{" +
                 "reimbId=" + reimbId +
                 ", reimbAmount=" + reimbAmount +
-                ", reimbSubmitted=" + reimbSubmitted +
-                ", reimbResolved=" + reimbResolved +
                 ", reimbDescription='" + reimbDescription + '\'' +
                 ", reimbReceipt='" + reimbReceipt + '\'' +
                 ", reimbFullyPaid=" + reimbFullyPaid +

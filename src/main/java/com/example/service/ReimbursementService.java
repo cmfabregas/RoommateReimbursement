@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.model.Group;
 import com.example.model.Reimbursement;
 import com.example.repository.ReimbursementRepository;
 
@@ -22,13 +23,15 @@ public class ReimbursementService {
 	}
 	
 	public List<Reimbursement> getAllReimbursement(){
-		return rRepo.finalAll();
+		return rRepo.findAll();
 	}
 	
 	public Reimbursement getByReimbursementId(int id) {
-		return rRepo.findByR_Id(id);
+		return rRepo.findByReimbId(id);
 	}
 	
-//	public Reimbursement getByGroupName()
+	public Reimbursement getByGroup( Group group) {
+		return rRepo.findByGroup(group);
+	}
 
 }
