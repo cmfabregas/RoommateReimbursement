@@ -30,6 +30,15 @@ public class GroupService {
         groupRepo.save(group);
     }
 
+    public List<Group> getAllGroupsByUserId(int userId) {
+        return groupRepo.findGroupsByUserId(userId);
+    }
+
+    public List<Group> getAllGroupsByUsername(String username){
+        return groupRepo.findGroupsByUsername(username);
+    }
+
+
     public List<Group> getAllGroups(){
         return groupRepo.findAll();
     }
