@@ -8,9 +8,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
-import javax.validation.Valid;
-import java.util.ArrayList;
+
 import java.util.List;
+
 
 @RestController
 @RequestMapping(value = "/groups")
@@ -38,11 +38,20 @@ public class GroupController {
         return new ResponseEntity<List<Group>>(groupService.getAllGroups(),HttpStatus.OK);
     }
 
+
+
     @GetMapping("/init")
-    public ResponseEntity<String> insertGroup(@RequestBody Group group){
+    public ResponseEntity<String> insertInitialGroup(@RequestBody Group group){
         System.out.println(group);
         groupService.insertGroup(group);
         return new ResponseEntity<String>("Group created", HttpStatus.CREATED);
+    }
+
+    @PostMapping()
+    public ResponseEntity<String> insertGroup(@RequestBody Group group){
+        System.out.println(group);
+        groupService.insertGroup(group);
+        return new ResponseEntity<String>("Group Created", HttpStatus.CREATED);
     }
 
     @GetMapping("/{groupname}")
@@ -53,6 +62,11 @@ public class GroupController {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<Group>(group, HttpStatus.OK);
+    }
+
+    @GetMapping("/username/{userId}")
+    public ResponseEntity<List<Group>> getGroupByUserId(@PathVariable("userId") int userId) {
+        return new ResponseEntity<List<Group>>(groupService.getAllGroupsByUserId(userId), HttpStatus.OK);
     }
 
     @DeleteMapping("/{groupId}")
