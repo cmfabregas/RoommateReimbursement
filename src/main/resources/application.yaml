@@ -1,8 +1,6 @@
-# yaml stands for (YAML aint Markup Language)it uses whitespace and nesting for its properties
 server:
-  port: 9015
-#if this was .properties spring.datasource.url = your url
-# spring.datasource.username = username ... etc
+ port: 9010
+
 spring:
   datasource:
     url: jdbc:postgresql://rev-can-trainning.cqrdgjlr1vfb.us-east-2.rds.amazonaws.com:5432/springdb
