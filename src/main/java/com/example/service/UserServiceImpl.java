@@ -79,8 +79,8 @@ public class UserServiceImpl { //implements UserService {
 		String hostName =  InetAddress.getLocalHost().getHostName();
 		StringBuilder sb = new StringBuilder();
 		sb.append("http://");
-		sb.append("localhost:8080");
-		sb.append("/myRoomate/resetpassword/?id=");
+		sb.append("localhost:4200");
+		sb.append("/resetpassword/?id=");
 		sb.append(uuid.toString());
 		return sb.toString();
 		
