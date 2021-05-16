@@ -15,10 +15,6 @@ public interface GroupRepository extends JpaRepository<Group, Integer> {
     public Group findByGroupName(String groupName);
     public Group findByGroupId(int groupId);
 
-    public List<Group> findGroupByGroupUsersAndGroupId();
-    //public List<Group>
-
-    //@Query("SELECT g FROM rmr_group g JOIN join_user_group jug ON g.group_id = jug.group_id JOIN rmr_user u ON jug.user_id = u.user_id WHERE u.user_id = :userId")
     @Query("select g from Group g JOIN g.groupUsers u where u.userId = :userId ")
     public List<Group> findGroupsByUserId(@Param("userId") int userId);
 
