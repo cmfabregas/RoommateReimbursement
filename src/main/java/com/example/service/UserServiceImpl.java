@@ -16,7 +16,7 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 
 @Service
-public class UserServiceImpl { //implements UserService {
+public class UserServiceImpl { 
 	@Autowired
 	private UserRepository repository;
 	
@@ -24,33 +24,28 @@ public class UserServiceImpl { //implements UserService {
 	private JavaMailSender jMailSender;
 	
 
-	//@Override
-	public User createUser(User user) {
-		//UserEntity entity = new UserEntity();
-		//entity.setEmail(user.getEmail());
+	
+	public User createUser(User user) {		
 		repository.save(user);
-		
-		
-		// TODO Auto-generated method stub
+				
 		return user;
 	}
-
-	//@Override
+	
 	public User forgotPassword(User user) {
 	User ent = repository.findByEmail(user.getEmail());
 			if(ent!=null) {
 		
 		sendEmail(user, ent);
 		return user;
-			}
-		// TODO Auto-generated method stub
-		return null;
 	}
+		
+		return null;
+}
 	
 	
 	private void sendEmail(User user, User ent) {
 	     SimpleMailMessage msg = new SimpleMailMessage();
-	        msg.setTo("waglepuja@gmail.com");
+	        msg.setTo(user.getEmail());
 
 	        msg.setSubject("Reset your password");
 	        String link="";
@@ -58,7 +53,7 @@ public class UserServiceImpl { //implements UserService {
 			try {
 				link = generateLink(uuid);
 			} catch (UnknownHostException e) {
-				// TODO Auto-generated catch block
+				
 				e.printStackTrace();
 			}
 	      
@@ -71,10 +66,8 @@ public class UserServiceImpl { //implements UserService {
 	        
 	        saveSpecialCode(ent, uuid);
 	}
-	//https//www.ourdomain.com/myRoomate/resetpassword/?id=speicalcodehere
-	private String generateLink(UUID uuid) throws UnknownHostException {
-		//Random uuid = new Random();
-		//UUID uuid = UUID.randomUUID();
+	
+	private String generateLink(UUID uuid) throws UnknownHostException {	
 		
 		String hostName =  InetAddress.getLocalHost().getHostName();
 		StringBuilder sb = new StringBuilder();
@@ -87,17 +80,14 @@ public class UserServiceImpl { //implements UserService {
 		
 	}
 	
-	
-	
 	private void saveSpecialCode(User user, UUID uuid) {
-		user.setSpecialcode(uuid.toString());
-		
+		user.setSpecialcode(uuid.toString());		
 		
 		repository.save(user);
 		
 	}
 
-	//@Override
+	
 	public User generateNewPassword(User user) {
 		User ent = repository.findBySpecialcode(user.getSpecialcode());
 		if(ent!=null) {
@@ -107,7 +97,7 @@ public class UserServiceImpl { //implements UserService {
 		
 		return user;
 	}
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
