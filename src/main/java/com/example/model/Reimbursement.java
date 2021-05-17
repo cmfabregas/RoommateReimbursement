@@ -47,7 +47,7 @@ public class Reimbursement {
 
 
 
-    public Reimbursement(double reimbAmount, Date reimbSubmitted, Date reimbResolved, String reimbDescription, String reimbReceipt, boolean reimbFullyPaid, List<Group> groupList, String username) {
+    public Reimbursement(double reimbAmount, String reimbDescription, String reimbReceipt, boolean reimbFullyPaid, Group groupList, String username) {
         this.reimbAmount = reimbAmount;
         this.reimbDescription = reimbDescription;
         this.reimbReceipt = reimbReceipt;

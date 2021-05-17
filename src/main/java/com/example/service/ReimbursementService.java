@@ -18,8 +18,9 @@ import lombok.NoArgsConstructor;
 public class ReimbursementService {
 	private ReimbursementRepository rRepo;
 	
-	public void insertReimbursement(Reimbursement reimbur) {
-		rRepo.save(reimbur);
+	public int insertReimbursement(Reimbursement reimbur) {
+		Reimbursement rebur = rRepo.save(reimbur);
+		return rebur.getReimbId();
 	}
 	
 	public List<Reimbursement> getAllReimbursement(){
