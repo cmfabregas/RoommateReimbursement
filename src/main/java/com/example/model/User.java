@@ -40,6 +40,9 @@ public class User {
 
     @Column(name = "last_name")
     private String lastName;
+    
+	@Column(name = "specialcode")
+	private String specialcode;
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "JOIN_USER_GROUP",
@@ -76,6 +79,22 @@ public class User {
     }
     
     
+
+    public List<Group> getGroups() {
+        return groups;
+    }
+
+    public void setGroups(List<Group> groups) {
+        this.groups = groups;
+    }
+    
+	public String getSpecialcode() {
+		return specialcode;
+	}
+
+	public void setSpecialcode(String specialcode) {
+		this.specialcode = specialcode;
+	}
 
 
 }

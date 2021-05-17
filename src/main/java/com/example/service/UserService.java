@@ -1,5 +1,6 @@
 package com.example.service;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -35,8 +36,6 @@ public User getuserByUserName(String name) {
 	return urepo.findByUsername(name);
 	
 }
-
-
-
-	
 }
+
+
