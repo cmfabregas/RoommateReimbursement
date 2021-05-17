@@ -10,6 +10,7 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Service;
 
 import com.example.model.User;
+import com.example.repository.UserRepo;
 //import com.example.entity.UserEntity;
 import com.example.repository.UserRepository;
 import org.springframework.mail.SimpleMailMessage;
@@ -18,7 +19,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 @Service
 public class UserServiceImpl { 
 	@Autowired
-	private UserRepository repository;
+	private UserRepo repository;
 	
 	@Autowired
 	private JavaMailSender jMailSender;
@@ -75,9 +76,7 @@ public class UserServiceImpl {
 		sb.append("localhost:4200");
 		sb.append("/resetpassword/?id=");
 		sb.append(uuid.toString());
-		return sb.toString();
-		
-		
+		return sb.toString();			
 	}
 	
 	private void saveSpecialCode(User user, UUID uuid) {
