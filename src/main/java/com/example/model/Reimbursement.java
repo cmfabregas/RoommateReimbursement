@@ -38,8 +38,8 @@ public class Reimbursement {
     @JoinColumn(name = "Group_FK")
     private Group group;
 
-    @Column(name = "user_id")
-    private int user_id;
+//    @Column(name = "user_id")
+//    private int user_id;
     
     @Column(name = "username")
     private String username;

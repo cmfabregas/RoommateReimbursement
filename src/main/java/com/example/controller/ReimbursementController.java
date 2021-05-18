@@ -34,6 +34,7 @@ public class ReimbursementController {
 		
 		@PostMapping("/submitReimbursement")
 		public ResponseEntity<String> insertReimbursement(@RequestBody Reimbursement reimbur, BindingResult result){
+			System.out.println("Entered submit reimbursement");
 			System.out.println(reimbur);
 //			if(result.hasErrors()) {
 //				System.out.println(result.getFieldError());
