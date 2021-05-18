@@ -46,6 +46,9 @@ public class Group {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "group")
     private List<Reimbursement> reimbursements = new ArrayList<>();
 
+    public Group(int groupId) {
+        this.groupId = groupId;
+    }
 
     public Group(String groupName, String groupDescription, List<User> groupUsers, List<Reimbursement> reimbursements) {
         this.groupName = groupName;
