@@ -4,6 +4,8 @@ package com.example.model;
 import java.util.*;
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -36,6 +38,7 @@ public class Reimbursement {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "Group_FK")
+    @JsonBackReference
     private Group group;
 
 //    @Column(name = "user_id")

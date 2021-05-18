@@ -2,6 +2,7 @@ package com.example.controller;
 
 
 import com.example.model.Group;
+import com.example.model.Reimbursement;
 import com.example.service.GroupService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -74,6 +75,13 @@ public class GroupController {
         Group group = groupService.getGroupById(groupId);
         groupService.deleteGroup(group);
         return new ResponseEntity<>("Group successfully deleted", HttpStatus.GONE);
+    }
+    
+    @GetMapping("/reimbursement/{groupId}")
+    public ResponseEntity<List<Reimbursement>> getReimbursementListByGroup(@PathVariable int groupId){
+    	Group group = groupService.getGroupById(groupId);
+    	List<Reimbursement> reimbursementList = group.getReimbursements();
+    	return new ResponseEntity<List<Reimbursement>>(reimbursementList,HttpStatus.OK);
     }
 
 //    @GetMapping("/{userId}")
