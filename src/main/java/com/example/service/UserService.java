@@ -18,7 +18,7 @@ public class UserService {
 	private UserRepo urepo;
 
 	
-public void insert(User user) {
+	public void insert(User user) {
 		
 		System.out.println(user);
 		urepo.save(user);

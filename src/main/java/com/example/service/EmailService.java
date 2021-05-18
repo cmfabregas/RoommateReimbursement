@@ -10,16 +10,16 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Service;
 
 import com.example.model.User;
+import com.example.repository.EmailRepository;
 import com.example.repository.UserRepo;
-//import com.example.entity.UserEntity;
-import com.example.repository.UserRepository;
-import org.springframework.mail.SimpleMailMessage;
+//import com.example.repository.UserRepository;
+//import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 
 @Service
-public class UserServiceImpl { 
+public class EmailService { 
 	@Autowired
-	private UserRepo repository;
+	private EmailRepository repository;
 	
 	@Autowired
 	private JavaMailSender jMailSender;
@@ -33,15 +33,14 @@ public class UserServiceImpl {
 	}
 	
 	public User forgotPassword(User user) {
-	User ent = repository.findByEmail(user.getEmail());
-			if(ent!=null) {
 		
-		sendEmail(user, ent);
-		return user;
-	}
-		
+		User ent = repository.findByEmail(user.getEmail());
+		if(ent!=null) {
+			sendEmail(user, ent);
+			return user;
+		}
 		return null;
-}
+	}
 	
 	
 	private void sendEmail(User user, User ent) {

@@ -49,9 +49,6 @@ public class User {
         joinColumns = {@JoinColumn(name = "userId")},
         inverseJoinColumns = {@JoinColumn(name = "groupId")})
     private List<Group> groups = new ArrayList<>();
-
-
-
  
     public User(int userId, String username, String email, String password, String firstName, String lastName) {
         this.userId = userId;
