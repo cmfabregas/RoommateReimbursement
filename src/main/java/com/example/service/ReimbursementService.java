@@ -34,5 +34,15 @@ public class ReimbursementService {
 	public Reimbursement getByGroup( Group group) {
 		return rRepo.findByGroup(group);
 	}
+	
+	public List<Reimbursement> getAllByGroup( Integer groupId) {
+		return rRepo.findAllFromGroup(groupId);
+	}
+	
+	public Reimbursement updateReimbursement(Reimbursement reimbur) {
+		Reimbursement rebur = rRepo.save(reimbur);
+		return rebur;
+	}
+	
 
 }
