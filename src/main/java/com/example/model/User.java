@@ -3,6 +3,7 @@ package com.example.model;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,10 +16,10 @@ import java.util.List;
 
 @Entity
 @Table(name="rmr_user")
-@ToString
 @Getter @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="userId")
 public class User {
 
     @Id
@@ -44,10 +45,13 @@ public class User {
 	@Column(name = "specialcode")
 	private String specialcode;
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "JOIN_USER_GROUP",
-        joinColumns = {@JoinColumn(name = "userId")},
-        inverseJoinColumns = {@JoinColumn(name = "groupId")})
+
+    @ManyToMany(mappedBy = "groupUsers",fetch = FetchType.LAZY)
+//    @JoinTable(name = "JOIN_USER_GROUP",
+//        joinColumns = {@JoinColumn(name = "userId")},
+//        inverseJoinColumns = {@JoinColumn(name = "groupId")})
+    //@JsonManagedReference
+    @JsonIgnore
     private List<Group> groups = new ArrayList<>();
  
     public User(int userId, String username, String email, String password, String firstName, String lastName) {
@@ -74,6 +78,7 @@ public class User {
         this.firstName = firstName;
         //this.lastName = lastName;
     }
+
     
     
 
@@ -94,4 +99,16 @@ public class User {
 	}
 
 
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "userId=" + userId +
+                ", username='" + username + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                '}';
+    }
 }

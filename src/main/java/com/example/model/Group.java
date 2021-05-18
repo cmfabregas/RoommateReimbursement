@@ -3,6 +3,7 @@ package com.example.model;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,12 +14,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+
 @Entity
+//@JsonIdentityInfo(generator= ObjectIdGenerators.PropertyGenerator.class, property="groupId")
 @Table(name="rmr_group")
 @ToString
 @Getter @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+
 public class Group {
 
     @Id
@@ -32,18 +36,23 @@ public class Group {
     @Column(name="group_description")
     private String groupDescription;
 
+
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "JOIN_USER_GROUP",
             joinColumns = {@JoinColumn(name = "groupId")},
             inverseJoinColumns = {@JoinColumn(name = "userId")})
-    private List<User> groupUsers;
+    private List<User> groupUsers = new ArrayList<>();
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "group")
     private List<Reimbursement> reimbursements = new ArrayList<>();
 
 
-
- 
+    public Group(String groupName, String groupDescription, List<User> groupUsers, List<Reimbursement> reimbursements) {
+        this.groupName = groupName;
+        this.groupDescription = groupDescription;
+        this.groupUsers = groupUsers;
+        this.reimbursements = reimbursements;
+    }
 
     public int getGroupId() {
         return groupId;
