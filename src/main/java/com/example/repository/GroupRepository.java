@@ -13,7 +13,10 @@ public interface GroupRepository extends JpaRepository<Group, Integer> {
 
     public List<Group> findAll();
     public Group findByGroupName(String groupName);
-    public Group findByGroupId(int groupId);
+//    public Group findByGroupId(int groupId);
+
+    public Group findGroupByGroupId(int groupId);
+
 
     @Query("select g from Group g JOIN g.groupUsers u where u.userId = :userId ")
     public List<Group> findGroupsByUserId(@Param("userId") int userId);
@@ -21,6 +24,7 @@ public interface GroupRepository extends JpaRepository<Group, Integer> {
     @Query("select g from Group g JOIN g.groupUsers u where u.username = :username")
     public List<Group> findGroupsByUsername(@Param("username") String username);
 
+    
 
 
 
