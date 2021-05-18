@@ -48,7 +48,7 @@ public class GroupService {
     }
 
     public Group getGroupById(int id){
-        return groupRepo.findByGroupId(id);
+        return groupRepo.findGroupByGroupId(id);
     }
 
 
