@@ -1,5 +1,6 @@
 package com.example.service;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +18,7 @@ public class UserService {
 	private UserRepo urepo;
 
 	
-public void insert(User user) {
+	public void insert(User user) {
 		
 		System.out.println(user);
 		urepo.save(user);
@@ -35,8 +36,6 @@ public User getuserByUserName(String name) {
 	return urepo.findByUsername(name);
 	
 }
-
-
-
-	
 }
+
+

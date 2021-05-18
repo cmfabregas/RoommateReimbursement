@@ -41,6 +41,9 @@ public class User {
 
     @Column(name = "last_name")
     private String lastName;
+    
+	@Column(name = "specialcode")
+	private String specialcode;
 
 
     @ManyToMany(mappedBy = "groupUsers",fetch = FetchType.LAZY)
@@ -50,9 +53,6 @@ public class User {
     //@JsonManagedReference
     @JsonIgnore
     private List<Group> groups = new ArrayList<>();
-
-
-
  
     public User(int userId, String username, String email, String password, String firstName, String lastName) {
         this.userId = userId;
@@ -78,6 +78,27 @@ public class User {
         this.firstName = firstName;
         //this.lastName = lastName;
     }
+
+    
+    
+
+    public List<Group> getGroups() {
+        return groups;
+    }
+
+    public void setGroups(List<Group> groups) {
+        this.groups = groups;
+    }
+    
+	public String getSpecialcode() {
+		return specialcode;
+	}
+
+	public void setSpecialcode(String specialcode) {
+		this.specialcode = specialcode;
+	}
+
+
 
     @Override
     public String toString() {
