@@ -9,13 +9,14 @@ import com.example.model.User;
 public interface UserRepo extends JpaRepository<User, Integer> {
 	
 	
-	public List<User>findByUserId(int id);
+	//public List<User>findByUserId(int id);
 	//public List<User>findByRid(int id);
 
 	//public User findByUsernameAndPassword(String username, String password);
 
 	public User findByUsernameAndPassword(String username, String password);
 	public User findByUsername(String username);
+	public User findByUserId(int userId);
 
 	
 

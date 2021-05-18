@@ -36,6 +36,10 @@ public User getuserByUserName(String name) {
 	
 }
 
+public User getUserByUserId(int userId){
+	return urepo.findByUserId(userId);
+}
+
 
 
 	
