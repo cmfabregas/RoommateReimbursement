@@ -24,8 +24,7 @@ public interface GroupRepository extends JpaRepository<Group, Integer> {
     @Query("select g from Group g JOIN g.groupUsers u where u.username = :username")
     public List<Group> findGroupsByUsername(@Param("username") String username);
 
-
-
+    
 
 
 
