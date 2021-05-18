@@ -7,16 +7,16 @@ server:
              
 spring:
   datasource:
-    url: jdbc:postgresql://rev-can-trainning.cqrdgjlr1vfb.us-east-2.rds.amazonaws.com:5432/springdb
+    url: jdbc:postgresql://revature1.cbarqkkjswqt.us-east-2.rds.amazonaws.com:5432/springdb
     username: springuser
-    password: password
+    password: Passw0rd
     driver-class-name: org.postgresql.Driver
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     show-sql: true
     hibernate:
       ddl-auto: update
-      format_sql: true
+      format_sql: true  #setting to true for testing purpose
   mail:
     host: smtp.gmail.com
     port: 587  # port which gmail uses to make a connection to from our app
