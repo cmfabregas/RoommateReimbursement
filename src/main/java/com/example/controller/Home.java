@@ -54,16 +54,16 @@ public class Home {
 	public ResponseEntity<Object> insertrem(@RequestBody LinkedHashMap<String,String> reimbursement){
 		
 	//	User user1 = new User(user.get("GroupName"), user.get("ReimbursementName"), Integer.parseInt(user.get("ReimbursementAmount")));
-		String groupName = reimbursement.get("GroupName");
+		int groupId = Integer.valueOf(reimbursement.get("groupId"));
 		
-		Group group = Gserv.getGroupByName(groupName);
+		Group group = Gserv.getGroupById(groupId);
+		System.out.println("Group is: " + group.toString());
 		String reimbursementName = reimbursement.get("ReimbursementName");
 		Double reimbursementAmount = Double.valueOf(reimbursement.get("ReimbursementAmount"));
 		String reimbursementUserName = reimbursement.get("username");
 		Boolean isPaid = false;
-		System.out.println("Creating reimbursement. From Group : " + groupName);
 		Reimbursement rbur = new Reimbursement(reimbursementAmount, reimbursementName, "", isPaid, group, reimbursementUserName  );
-		System.out.println(rbur);
+		rbur.setGroup(group);
 		int rID = Rserv.insertReimbursement(rbur);
 
 		//Userv.insertFood(user1);
