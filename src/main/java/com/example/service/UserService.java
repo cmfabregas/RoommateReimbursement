@@ -16,31 +16,24 @@ public class UserService {
 
 	private UserRepo urepo;
 
-	
-public void insert(User user) {
-		
+	public void insert(User user) {
+
 		System.out.println(user);
 		urepo.save(user);
 	}
 
+	public User getuserlogin(String username, String password) {
 
-public User getuserlogin(String username,String password) {
-	
-	return urepo.findByUsernameAndPassword(username, password);
-}
+		return urepo.findByUsernameAndPassword(username, password);
+	}
 
+	public User getuserByUserName(String name) {
 
-public User getuserByUserName(String name) {
-	
-	return urepo.findByUsername(name);
-	
-}
+		return urepo.findByUsername(name);
 
-public User getUserByUserId(int userId){
-	return urepo.findByUserId(userId);
-}
+	}
+	public User getUserByUserId(int userId){
+		return urepo.findByUserId(userId);
+	}
 
-
-
-	
 }

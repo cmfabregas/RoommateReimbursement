@@ -1,14 +1,34 @@
+# yaml stands for (YAML aint Markup Language)it uses whitespace and nesting for its properties
 server:
- port: 9010
-
+  port: 9010
+#if this was .properties spring.datasource.url = your url
+# spring.datasource.username = username ... etc       
+              
+             
 spring:
- datasource: 
-   url : jdbc:postgresql://revature1.cbarqkkjswqt.us-east-2.rds.amazonaws.com:5432/springdb
-   username: springuser
-   password: Passw0rd
-   driver-class-name: org.postgresql.Driver
- jpa:
-  database-platform: org.hibernate.dialect.PostgreSQLDialect
-  show-sql: false
-  hibernate:
-   ddl-auto: update
+  datasource:
+    url: jdbc:postgresql://revature1.cbarqkkjswqt.us-east-2.rds.amazonaws.com:5432/springdb
+    username: springuser
+    password: Passw0rd
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true  #setting to true for testing purpose
+    hibernate:
+      ddl-auto: update
+      format_sql: true
+  mail:
+    host: smtp.gmail.com
+    port: 587  # port which gmail uses to make a connection to from our app
+    username: test9876598765654567@gmail.com
+    password: As12345@
+    properties:
+       mail:
+          smtp: 
+            auth: true
+            connectiontimeout: 5000
+            timeout: 5000
+            writetimeout: 5000
+            starttls: 
+              enable: true
+ 
