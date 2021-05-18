@@ -13,10 +13,10 @@ spring:
     driver-class-name: org.postgresql.Driver
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
-    show-sql: true
+    show-sql: true  #setting to true for testing purpose
     hibernate:
       ddl-auto: update
-      format_sql: true  #setting to true for testing purpose
+      format_sql: true
   mail:
     host: smtp.gmail.com
     port: 587  # port which gmail uses to make a connection to from our app
