@@ -55,14 +55,15 @@ public class Home {
 		
 	//	User user1 = new User(user.get("GroupName"), user.get("ReimbursementName"), Integer.parseInt(user.get("ReimbursementAmount")));
 		String groupName = reimbursement.get("GroupName");
-		
+		System.out.println(reimbursement);
 		Group group = Gserv.getGroupByName(groupName);
 		String reimbursementName = reimbursement.get("ReimbursementName");
 		Double reimbursementAmount = Double.valueOf(reimbursement.get("ReimbursementAmount"));
 		String reimbursementUserName = reimbursement.get("username");
+		String assigne = reimbursement.get("assign");
 		Boolean isPaid = false;
 		System.out.println("Creating reimbursement. From Group : " + groupName);
-		Reimbursement rbur = new Reimbursement(reimbursementAmount, reimbursementName, "", isPaid, group, reimbursementUserName  );
+		Reimbursement rbur = new Reimbursement(reimbursementAmount, reimbursementName, "", isPaid, group, reimbursementUserName,assigne);
 		System.out.println(rbur);
 		int rID = Rserv.insertReimbursement(rbur);
 

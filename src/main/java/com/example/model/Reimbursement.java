@@ -47,6 +47,8 @@ public class Reimbursement {
     @Column(name = "username")
     private String username;
 
+    @Column(name = "assigne")
+    private String assigne;
 
 
 
@@ -56,5 +58,14 @@ public class Reimbursement {
         this.reimbReceipt = reimbReceipt;
         this.reimbFullyPaid = reimbFullyPaid;
         this.username = username;
+    }
+    
+    public Reimbursement(double reimbAmount, String reimbDescription, String reimbReceipt, boolean reimbFullyPaid, Group groupList, String username,String assigne) {
+        this.reimbAmount = reimbAmount;
+        this.reimbDescription = reimbDescription;
+        this.reimbReceipt = reimbReceipt;
+        this.reimbFullyPaid = reimbFullyPaid;
+        this.username = username;
+        this.assigne=assigne;
     }
 }
