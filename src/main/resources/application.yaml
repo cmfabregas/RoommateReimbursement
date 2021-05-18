@@ -7,13 +7,13 @@ server:
              
 spring:
   datasource:
-    url: jdbc:postgresql://rev-can-trainning.cqrdgjlr1vfb.us-east-2.rds.amazonaws.com:5432/springdb
+    url: jdbc:postgresql://revature1.cbarqkkjswqt.us-east-2.rds.amazonaws.com:5432/springdb
     username: springuser
-    password: password
+    password: Passw0rd
     driver-class-name: org.postgresql.Driver
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
-    show-sql: true
+    show-sql: true  #setting to true for testing purpose
     hibernate:
       ddl-auto: update
       format_sql: true
