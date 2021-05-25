@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.model.User;
-import com.example.service.UserServiceImpl;
+import com.example.service.EmailService;
+//import com.example.service.UserService;
+
 
 @RestController
 @RequestMapping("/user")
@@ -19,11 +21,11 @@ import com.example.service.UserServiceImpl;
 public class UserController {
 	
 	@Autowired
-	private UserServiceImpl uservice;
+	private EmailService eservice;
 	
 	@PostMapping
 	public User createUser(@RequestBody User user) {
-		uservice.createUser(user);
+		eservice.createUser(user);
 		
 		
 		return user;
@@ -32,7 +34,7 @@ public class UserController {
 	
 	@PostMapping("/forgotPassword")
 	public ResponseEntity<User> forgotPassword(@RequestBody User user) {
-		User newUser = uservice.forgotPassword(user);
+		User newUser = eservice.forgotPassword(user);
 		if(newUser==null) {
 	     return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
 		}
@@ -43,7 +45,7 @@ public class UserController {
 
 	@PutMapping("/generateNewPassword")
 	public User generateNewPassword(@RequestBody User user ) {
-		uservice.generateNewPassword(user);
+		eservice.generateNewPassword(user);
 		
 		return user;
 		

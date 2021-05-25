@@ -2,14 +2,17 @@ package com.example.controller;
 
 
 import com.example.model.Group;
+import com.example.model.Reimbursement;
+import com.example.model.User;
 import com.example.service.GroupService;
+import com.example.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.util.*;
 
 
 @RestController
@@ -18,6 +21,7 @@ import java.util.List;
 public class GroupController {
 
     private GroupService groupService;
+    private UserService userService;
 
     @InitBinder
     protected void initBinder(WebDataBinder binder){
@@ -29,16 +33,16 @@ public class GroupController {
     }
 
     @Autowired
-    public GroupController(GroupService groupService) {
+    public GroupController(GroupService groupService, UserService userService) {
         this.groupService = groupService;
+        this.userService = userService;
     }
+
 
     @GetMapping()
     public ResponseEntity<List<Group>> getAllGroups(){
         return new ResponseEntity<List<Group>>(groupService.getAllGroups(),HttpStatus.OK);
     }
-
-
 
     @GetMapping("/init")
     public ResponseEntity<String> insertInitialGroup(@RequestBody Group group){
@@ -52,6 +56,25 @@ public class GroupController {
         System.out.println(group);
         groupService.insertGroup(group);
         return new ResponseEntity<String>("Group Created", HttpStatus.CREATED);
+    }
+
+    @PostMapping(value = "/addusertogroup")
+    public ResponseEntity<String> addUserToGroup(@RequestBody LinkedHashMap<String, String> data){
+
+        String username = data.get("username");
+        int groupId = Integer.parseInt(data.get("groupId"));
+
+        Group group = groupService.getGroupById(groupId);
+        User addedUser = userService.getuserByUserName(username);
+
+        List<User> uList = group.getGroupUsers();
+        uList.add(addedUser);
+
+        group.setGroupUsers(uList);
+
+        groupService.insertGroup(group);
+        return new ResponseEntity<>("Successfully added user", HttpStatus.ACCEPTED);
+
     }
 
     @GetMapping("/{groupname}")
@@ -74,6 +97,13 @@ public class GroupController {
         Group group = groupService.getGroupById(groupId);
         groupService.deleteGroup(group);
         return new ResponseEntity<>("Group successfully deleted", HttpStatus.GONE);
+    }
+    
+    @GetMapping("/reimbursement/{groupId}")
+    public ResponseEntity<List<Reimbursement>> getReimbursementListByGroup(@PathVariable int groupId){
+    	Group group = groupService.getGroupById(groupId);
+    	List<Reimbursement> reimbursementList = group.getReimbursements();
+    	return new ResponseEntity<List<Reimbursement>>(reimbursementList,HttpStatus.OK);
     }
 
 //    @GetMapping("/{userId}")

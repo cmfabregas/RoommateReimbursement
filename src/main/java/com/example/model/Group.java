@@ -1,7 +1,23 @@
 package com.example.model;
 
 
-import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,16 +25,15 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
 
 @Entity
+//@JsonIdentityInfo(generator= ObjectIdGenerators.PropertyGenerator.class, property="groupId")
 @Table(name="rmr_group")
 @ToString
 @Getter @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+
 public class Group {
 
     @Id
@@ -32,15 +47,20 @@ public class Group {
     @Column(name="group_description")
     private String groupDescription;
 
+
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "JOIN_USER_GROUP",
             joinColumns = {@JoinColumn(name = "groupId")},
             inverseJoinColumns = {@JoinColumn(name = "userId")})
-    private List<User> groupUsers;
+    private List<User> groupUsers = new ArrayList<>();
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "group")
+    @JsonManagedReference
     private List<Reimbursement> reimbursements = new ArrayList<>();
 
+    public Group(int groupId) {
+        this.groupId = groupId;
+    }
 
     public Group(String groupName, String groupDescription, List<User> groupUsers, List<Reimbursement> reimbursements) {
         this.groupName = groupName;

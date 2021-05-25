@@ -1,19 +1,10 @@
 # yaml stands for (YAML aint Markup Language)it uses whitespace and nesting for its properties
 server:
-  port: 9015
+  port: 9010
 #if this was .properties spring.datasource.url = your url
-# spring.datasource.username = username ... etc
-logging:
-  level:      org:
-        hibernate:
-          SQL: DEBUG
-          type:
-            descriptor:
-                sql:
-                  BasicBinder: TRACE   
-            
-                 
+# spring.datasource.username = username ... etc       
               
+             
 spring:
   datasource:
     url: jdbc:postgresql://revature1.cbarqkkjswqt.us-east-2.rds.amazonaws.com:5432/springdb
@@ -40,4 +31,3 @@ spring:
             writetimeout: 5000
             starttls: 
               enable: true
- 
